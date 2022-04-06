@@ -1,7 +1,7 @@
 function App() {
   return (
     <div>
-      
+      Things you don't need
     </div>
   );
 }
