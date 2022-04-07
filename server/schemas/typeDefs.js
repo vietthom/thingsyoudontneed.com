@@ -19,6 +19,7 @@ module.exports = gql`
     }
 
     //User input for logging in
+    //Note: add component for authentication
     input LoginInput {
         email: String
         password: String 
@@ -30,5 +31,6 @@ module.exports = gql`
 
     type Mutation {
         createUser(signUpInput: SignUpInput): User
+        loginUser(loginInput: LoginInput): User
     }
 `;
