@@ -1,7 +1,7 @@
 //This needs to be reconfigured
 
 
-const db = require('../config/connection');
+const mongo = require('../config/connection');
 const { Profile } = require('../models');
 const profileSeeds = require('./profileSeeds.json');
 

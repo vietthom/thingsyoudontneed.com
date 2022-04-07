@@ -10,11 +10,18 @@ const typeDefs = gql`
         token: String
     }
 
+    type Products{
+        productName: String
+        description: String
+        price: Int
+        quantity: Int
+    }
+
     input SignUpInput {
-        firstName: String
-        lastName: String
+        firstName: String!
+        lastName: String!
         email: String!
-        password: String
+        password: String!
     }
 
     input LoginInput {
