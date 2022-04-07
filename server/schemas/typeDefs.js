@@ -10,18 +10,16 @@ const typeDefs = gql`
         token: String
     }
 
-
     input SignUpInput {
-        firstName: String!
-        lastName: String!
+        firstName: String
+        lastName: String
         email: String!
-        password: String!
+        password: String
     }
 
-    
     input LoginInput {
         email: String
-        password: String 
+        password: String
     }
 
     type Query {
@@ -32,6 +30,7 @@ const typeDefs = gql`
         createUser(signUpInput: SignUpInput): User
         loginUser(loginInput: LoginInput): User
     }
+
 `;
 
 module.exports = typeDefs;

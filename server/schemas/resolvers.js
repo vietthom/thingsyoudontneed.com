@@ -51,7 +51,7 @@ const resolvers = {
             if(user && (await bcrypt.compare(password, user.password))){
                 //create new token
                 const token = jwt.sign(
-                    {user_id: newUser._id, email},
+                    {user_id: user._id, email},
                     secret, 
                     {
                         expiresIn: '2h'
