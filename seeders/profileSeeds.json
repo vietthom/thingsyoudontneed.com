@@ -1,0 +1,72 @@
+[
+  {
+    "productName": "S'more Maker",
+    "descripton": "This is a great thing when you want a s`more but don`t want to start a fire!",
+    "price": 12,
+    "img": "",
+    "quantity": 5
+  },
+  {
+    "productName": "Mini Desk Vacuum",
+    "descripton": "No excuses to have your workspace dirty.",
+    "price": 14,
+    "img": "",
+    "quantity": 7
+  },
+  {
+    "productName": "Egg Counter",
+    "descripton": "Have your smartphone notify you when you are running low on eggs or when your eggs are going bad!",
+    "price": 11,
+    "img": "",
+    "quantity": 10
+  },
+  {
+    "productName": "Mini Donut Factory",
+    "descripton": "Why struggle making big batches of donuts when you can just make up to 30 mini donuts?!",
+    "price": 113,
+    "img": "",
+    "quantity": 6
+  },
+  {
+    "productName": "Monogrammed Barbecue Branding Iron",
+    "descripton": "Let your friends and loved ones know who made that delicious piece of steak! Great buy for a grilling fan,",
+    "price": 17,
+    "img": "",
+    "quantity": 8
+  },
+  {
+    "productName": "Musical Toilet Roll Device",
+    "descripton": "Can't get enough of Christmas decorations? Have a little fun and sing a long some Christmas tunes!",
+    "price": 8,
+    "img": "",
+    "quantity": 4
+  },
+  {
+    "productName": "Wi-Fi Scent Dispenser",
+    "descripton": "Your phone can do so much now. So why not give it the ability to make any room in your house smell instantly like watermelon Jolly Rancher or sizzling bacon?",
+    "price": 108,
+    "img": "",
+    "quantity": 15
+  },
+  {
+    "productName": "Musical Cake Server",
+    "descripton": "Perfect for eating a birthday cake alone and wishing somebody,even a piece of cutlery, would sing `Happy Birthday` to you.",
+    "price": 20,
+    "img": "",
+    "quantity": 11
+  },
+  {
+    "productName": "Soft Pretzel Makes With Cheese Dip Warmer",
+    "descripton": "Makes 5 soft pretzels at home with you SuperPretzel brand Soft Pretzel Maker.",
+    "price": 55,
+    "img": "",
+    "quantity": 7
+  },
+  {
+    "productName": "Smartphone Controlled Kitty Water Fountain",
+    "descripton": "In order to prevent diseases and dehydration caused by water intake, we consider that managing your pets` water intake can improve their  health, prevent illness and insure proper hydration",
+    "price": 27,
+    "img": "",
+    "quantity": 9
+  }
+]

@@ -1,7 +1,6 @@
 {
   "name": "project3",
   "version": "1.0.0",
-  "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -11,5 +10,15 @@
   "license": "ISC",
   "dependencies": {
     "concurrently": "^7.1.0"
-  }
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/vietthom/thingsyoudontneed.com.git"
+  },
+  "bugs": {
+    "url": "https://github.com/vietthom/thingsyoudontneed.com/issues"
+  },
+  "homepage": "https://github.com/vietthom/thingsyoudontneed.com#readme",
+  "description": ""
 }
