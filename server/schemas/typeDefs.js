@@ -12,10 +12,10 @@ module.exports = gql`
 
     //User input for signing up 
     input SignUpInput {
-        firstName: String
-        lastName: String
-        email: String 
-        password: String
+        firstName: String!
+        lastName: String!
+        email: String!
+        password: String!
     }
 
     //User input for logging in
@@ -24,9 +24,11 @@ module.exports = gql`
         password: String 
     }
 
+    type Query {
+        user(id: ID!): User
+    }
 
-
-
-
-
+    type Mutation {
+        createUser(signUpInput: SignUpInput): User
+    }
 `;
