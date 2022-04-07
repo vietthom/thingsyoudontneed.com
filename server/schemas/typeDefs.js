@@ -33,6 +33,10 @@ const typeDefs = gql`
         user(id: ID!): User
     }
 
+    type Query{
+        products: [Products]
+    }
+
     type Mutation {
         createUser(signUpInput: SignUpInput): User
         loginUser(loginInput: LoginInput): User

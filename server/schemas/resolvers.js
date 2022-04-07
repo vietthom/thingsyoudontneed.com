@@ -71,7 +71,10 @@ const resolvers = {
         }
     },
     Query:{
-        user: (_, {ID}) => User.findById(ID)},
+        products: async ()=>{
+            return await Products.find({})
+        }
+    }
 };
 
 module.exports = resolvers;

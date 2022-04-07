@@ -1,14 +1,14 @@
 //This needs to be reconfigured
 
-
 const mongo = require('../config/connection');
-const { Profile } = require('../models');
-const profileSeeds = require('./profileSeeds.json');
+const { Products } = require('../models');
+const productSeeds = require('../seeders/productSeeds.json');
 
-db.once('open', async () => {
+mongo.once('open', async () => {
   try {
-    await Profile.deleteMany({});
-    await Profile.create(profileSeeds);
+    await Products.deleteMany({});
+    await Products.create(productSeeds);
+
 
     console.log('all done!');
     process.exit(0);
