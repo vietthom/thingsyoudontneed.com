@@ -1,4 +1,4 @@
-const { ApolloServer } = requrie('apollo-server-express');
+const { ApolloServer } = require('apollo-server-express');
 const express = require('express');
 
 const app = express();
