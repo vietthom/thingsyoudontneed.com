@@ -1,12 +1,12 @@
 const User = require('../models/User');
 const { ApolloError } = require('apollo-server-errors');
-const bcrypt = require('bcryptjs');
+const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
 
 const secret = process.env.SECRET;
 
-module.exports = {
+const resolvers = {
     Mutation: {
         async createUser(_, {signUpInput: {firstName, lastName, email, password} }) {
             //check for existing user
@@ -72,4 +72,6 @@ module.exports = {
     },
     Query:{
         user: (_, {ID}) => User.findById(ID)},
-}
+};
+
+module.exports = resolvers;
