@@ -1,5 +1,7 @@
-const { ApolloServer } = requrie('apollo-server-express');
+const { ApolloServer } = require('apollo-server-express');
 const express = require('express');
+
+const { typeDefs, resolvers }= require('./schemas');
 
 const app = express();
 const PORT = process.env.PORT || 3001;

@@ -1,12 +1,12 @@
 const User = require('../models/User');
 const { ApolloError } = require('apollo-server-errors');
-const bcrypt = require('bcryptjs');
+const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
 
 const secret = process.env.SECRET;
 
-module.exports = {
+const resolvers = {
     Mutation: {
         async createUser(_, {signUpInput: {firstName, lastName, email, password} }) {
             //check for existing user
@@ -28,7 +28,7 @@ module.exports = {
             });
             //create JWT (attach to user model)
             const token = jwt.sign(
-                {user_id: newUser.password, email},
+                {user_id: newUser._id, email},
                 secret, 
                 {
                     expiresIn: '2h'
@@ -43,7 +43,35 @@ module.exports = {
                 id: res.id,
                 ...res.doc
             }
+        },
+        async loginUser(_, {loginInput: {email, password}}){
+            //Check if user exists 
+            const user = await User.findOne({email});
+            //check if the entered password equals the encrypted password
+            if(user && (await bcrypt.compare(password, user.password))){
+                //create new token
+                const token = jwt.sign(
+                    {user_id: newUser._id, email},
+                    secret, 
+                    {
+                        expiresIn: '2h'
+                    }
+                );
+                //attach token to user model that we found above 
+                user.token = token;
+
+                return{
+                    id: user.id,
+                    ...user._doc
+                }
+            } else{
+                //if user doesn't exist, throw error 
+                throw new ApolloError('Incorrect password');
+            }
         }
     },
-    // Query:{}
-}
+    Query:{
+        user: (_, {ID}) => User.findById(ID)},
+};
+
+module.exports = resolvers;
