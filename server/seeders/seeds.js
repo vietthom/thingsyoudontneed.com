@@ -1,5 +1,3 @@
-//This needs to be reconfigured
-
 const mongo = require('../config/connection');
 const { Products } = require('../models');
 const productSeeds = require('../seeders/productSeeds.json');
