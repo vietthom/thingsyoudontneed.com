@@ -1,4 +1,4 @@
-const User = require('../models/User');
+const {User, Products} = require('../models');
 const { ApolloError } = require('apollo-server-errors');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
@@ -12,7 +12,7 @@ const resolvers = {
             //check for existing user
             const existingUser = await User.findOne({email});
 
-            //thorw error if user exists
+            //throw error if user exists
             if(existingUser){
                 throw new ApolloError('This email:' + email + ' is already registered to a user.')
             }
@@ -71,7 +71,10 @@ const resolvers = {
         }
     },
     Query:{
-        user: (_, {ID}) => User.findById(ID)},
+        products: async ()=>{
+            return await Products.find({})
+        }
+    }
 };
 
 module.exports = resolvers;
