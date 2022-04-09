@@ -20,8 +20,10 @@ const userSchema = new Schema({
     password: {
         type: String, 
         unique: true,
-        required: true},
+        required: true,
         token: {type: String}
+    },
+    orders: [Order.schema] 
 });
 
 module.exports = model('User', userSchema);

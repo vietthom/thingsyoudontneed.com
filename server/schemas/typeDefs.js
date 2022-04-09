@@ -17,6 +17,9 @@ const typeDefs = gql`
         quantity: Int
     }
 
+    type Order{
+
+    }
 
     input SignUpInput {
         firstName: String!
