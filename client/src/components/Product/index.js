@@ -6,7 +6,7 @@ import {
     ProductCard,
     ProductIcon,
     ProductH2,
-    ProductP } from './ProductElements'
+    ProductLinks } from './ProductElements'
 
 const Products = () => {
   return (
@@ -16,17 +16,52 @@ const Products = () => {
         <ProductCard>
             <ProductIcon src={""}/>
             <ProductH2>S'more Maker</ProductH2>
-            <ProductP>This is a great thing when you want a s`more but don`t want to start a fire!</ProductP>
+            <ProductLinks>View Product Details</ProductLinks>
         </ProductCard>
         <ProductCard>
             <ProductIcon src={""}/>
             <ProductH2>Mini Desk Vacuum</ProductH2>
-            <ProductP>No excuses to have your workspace dirty.</ProductP>
+            <ProductLinks>View Product Details</ProductLinks>
         </ProductCard>
         <ProductCard>
             <ProductIcon src={""}/>
             <ProductH2>Egg Counter</ProductH2>
-            <ProductP>Have your smartphone notify you when you are running low on eggs or when your eggs are going bad!</ProductP>
+            <ProductLinks>View Product Details</ProductLinks>
+        </ProductCard>
+        <ProductCard>
+            <ProductIcon src={""}/>
+            <ProductH2>Mini Donut Factory</ProductH2>
+            <ProductLinks>View Product Details</ProductLinks>
+        </ProductCard>
+        <ProductCard>
+            <ProductIcon src={""}/>
+            <ProductH2>Monogrammed Barbecue Branding Iron</ProductH2>
+            <ProductLinks>View Product Details</ProductLinks>
+        </ProductCard>
+        <ProductCard>
+            <ProductIcon src={""}/>
+            <ProductH2>Musical Toilet Roll Device</ProductH2>
+            <ProductLinks>View Product Details</ProductLinks>
+        </ProductCard>
+        <ProductCard>
+            <ProductIcon src={""}/>
+            <ProductH2>Wi-Fi Scent Dispenser</ProductH2>
+            <ProductLinks>View Product Details</ProductLinks>
+        </ProductCard>
+        <ProductCard>
+            <ProductIcon src={""}/>
+            <ProductH2>Musical Cake Server</ProductH2>
+            <ProductLinks>View Product Details</ProductLinks>
+        </ProductCard>
+        <ProductCard>
+            <ProductIcon src={""}/>
+            <ProductH2>Soft Pretzel Makes With Cheese Dip Warmer</ProductH2>
+            <ProductLinks>View Product Details</ProductLinks>
+        </ProductCard>
+        <ProductCard>
+            <ProductIcon src={""}/>
+            <ProductH2>Smartphone Controlled Kitty Water Fountain</ProductH2>
+            <ProductLinks>View Product Details</ProductLinks>
         </ProductCard>
     </ProductWrapper>
 </ProductContainer>
