@@ -8,7 +8,7 @@ mongo.once('open', async () => {
       {
         productName: "S'more Maker",
         description: "This is a great thing when you want a s`more but don`t want to start a fire!",
-        image:'smoresmaker.jpg' ,
+        image:'smoresmaker.jpg',
         category: categories[0]._id,
         price: 12,
         quantity: 10
