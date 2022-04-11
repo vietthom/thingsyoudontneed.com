@@ -72,8 +72,27 @@ const resolvers = {
     },
     Query:{
         products: async ()=>{
-            return await Products.find({})
-        }
+            return await Products.find({});
+        },
+        categories: async ()=>{
+            return await Category.find();
+        },
+        products: async (_, { category, name}) => {
+            const params = {};
+
+            if (category) {
+                params.category = category;
+            }
+            
+            if (name){
+                params.name = {
+                    $regex: name
+                };
+            }
+            return await Product.find(params).populate('category');
+        },
+
+
     }
 };
 
