@@ -8,6 +8,13 @@ const typeDefs = gql`
         email: String
         password: String
         token: String
+        orders: [Order]
+    }
+
+    type Order{
+        _id: ID 
+        purchaseDate: String
+        products: [Product]
     }
 
     type Products{
@@ -15,8 +22,8 @@ const typeDefs = gql`
         description: String
         price: Int
         quantity: Int
+        category: Category
     }
-
 
     input SignUpInput {
         firstName: String!
