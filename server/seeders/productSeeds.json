@@ -3,7 +3,8 @@
     "productName": "S'more Maker",
     "description": "This is a great thing when you want a s`more but don`t want to start a fire!",
     "price": 12,
-    "quantity": 5
+    "quantity": 5,
+    "image": 
   },
   {
     "productName": "Mini Desk Vacuum",
