@@ -31,6 +31,11 @@ const typeDefs = gql`
         name: String
     }
 
+    type Category{
+        _id: ID 
+        name: String
+    }
+
     input SignUpInput {
         firstName: String!
         lastName: String!

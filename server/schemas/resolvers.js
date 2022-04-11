@@ -90,7 +90,7 @@ const resolvers = {
                 };
             }
 
-            return await Product.find(params).populate('category');
+            return await Products.find(params).populate('category');
         },
     }
 };

@@ -2,7 +2,10 @@ const mongo = require('../config/connection');
 const { Products } = require('../models');
 
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> d3bca67792b5613b1bf936c6fea843e3add14ccf
 mongo.once('open', async () => {
   try {
     await Products.deleteMany({});
@@ -10,10 +13,17 @@ mongo.once('open', async () => {
     const categories = await Category.insertMany([
       {name: 'Useless'}, 
       {name: 'Really Useless'}, 
+<<<<<<< HEAD
       {name:'You Dont Need This'}, 
       {name: 'You Really Dont Need This'}
     ]);
 
+=======
+      {name: 'You Dont Need This'},
+      {name: 'You Really Dont Need This'},
+    ]);
+    
+>>>>>>> d3bca67792b5613b1bf936c6fea843e3add14ccf
     await Products.insertMany([
       {
         productName: "S'more Maker",
