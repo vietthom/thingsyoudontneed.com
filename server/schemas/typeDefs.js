@@ -26,6 +26,11 @@ const typeDefs = gql`
         category: Category
     }
 
+    type Category{
+        _id: ID 
+        name: String
+    }
+
     input SignUpInput {
         firstName: String!
         lastName: String!
@@ -38,12 +43,11 @@ const typeDefs = gql`
         password: String
     }
 
-    type Query {
-        user(id: ID!): User
-    }
 
     type Query{
         products: [Products]
+        categories: [Category]
+        products(category: ID, name: String): [Products]
     }
 
     type Mutation {
