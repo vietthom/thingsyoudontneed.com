@@ -10,6 +10,10 @@ const typeDefs = gql`
         token: String
     }
 
+    type Category {
+        name: String
+      }
+
     type Products{
         productName: String
         description: String
@@ -17,6 +21,19 @@ const typeDefs = gql`
         quantity: Int
     }
 
+    type Order {
+        purchaseDate: String
+        products: [Products]
+      }
+
+    type Checkout {
+        session: ID
+      }
+    
+    type Auth {
+        token: ID
+        user: User
+      }
 
     input SignUpInput {
         firstName: String!
@@ -34,9 +51,14 @@ const typeDefs = gql`
         user(id: ID!): User
     }
 
-    type Query{
-        products: [Products]
-    }
+    type Query {
+        categories: [Category]
+        products(name: String): [Products]
+
+        user: User
+        order : Order
+        checkout(products: [ID]!): Checkout
+      }
 
     type Mutation {
         createUser(signUpInput: SignUpInput): User
