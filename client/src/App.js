@@ -17,7 +17,7 @@ import Nav from './components/Nav';
 import { StoreProvider } from './utils/GlobalState';
 import Success from './pages/Success';
 import OrderHistory from './pages/OrderHistory';
-import CategoryMenu from './components/CategoryMenu';
+// import CategoryMenu from './components/CategoryMenu';
 import Product from './components/Product';
 
 const httpLink = createHttpLink({
@@ -78,9 +78,9 @@ function App() {
             </Routes>
           </StoreProvider>
         </div>
-        <div>
+        {/* <div>
           <CategoryMenu />
-        </div>
+        </div> */}
         <div>
           <Product />
         </div>

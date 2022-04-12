@@ -1,10 +1,11 @@
 import styled from 'styled-components';
+import { Link as LinkS } from 'react-scroll';
 
 export const ProductContainer = styled.div`
     height: 800px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: cente;
     align-items: center;
     background: ##F9F9F9;
 
@@ -21,7 +22,7 @@ export const ProductWrapper = styled.div`
     max-width: 1000px;
     margin: 0 auto;
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
     align-items: center;
     grid-gap: 16px;
     padding: 0 50px;
@@ -79,4 +80,18 @@ export const ProductH2 = styled.h2`
 export const ProductP = styled.p`
     font-size: 1rem;
     text-align: center;
+`;
+
+export const ProductLinks = styled(LinkS)`
+    color: #232F3E;
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    padding: 0 1rem;
+    height: 100%;
+    cursor: pointer;
+
+    &.active {
+        border-bottom: 3px solid #01bf71;
+    }
 `;
