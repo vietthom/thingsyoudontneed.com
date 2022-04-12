@@ -1,4 +1,5 @@
 const { model, Schema } = require('mongoose');
+const Order = require('./Order')
 
 //Creates user schema in mongodb
 const userSchema = new Schema({

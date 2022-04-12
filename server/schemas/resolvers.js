@@ -1,11 +1,11 @@
-const {User, Products, Category, Order} = require('../models');
 const { ApolloError } = require('apollo-server-errors');
+const { User, Products, Category, Order } = require('../models');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
-const stripe = require('stripe')(stripeKey)
+const stripe = require('stripe')('sk_test_51KnXr4AMOhfayBffh6ea49sqflPatPIR6ecd67lnMraYa8IvWBLBpoWLb82Nt8SqbiEaluBhzFsk6sVQVC1NXSLT00EcNiJtrv')
 const secret = process.env.SECRET;
-const stripeKey= process.env.STRIPE_KEY;
+// const stripeKey= process.env.STRIPE_KEY;
 
 const resolvers = {
     Mutation: {
@@ -84,9 +84,6 @@ const resolvers = {
           },
     },
     Query:{
-        products: async ()=>{
-            return await Products.find({});
-        }, 
         categories: async ()=>{
             return await Category.find();
         }, 
@@ -105,7 +102,7 @@ const resolvers = {
 
             return await Products.find(params).populate('category');
         },
-        user: async(_, _, context) =>{
+        user: async(_, _parent, context) =>{
             if(context.user){
                 const user = await User.findById(context.user._id).populate({
                     path: 'orders.products',
@@ -137,7 +134,7 @@ const resolvers = {
       
             for (let i = 0; i < products.length; i++) {
               const product = await stripe.products.create({
-                name: products[i].name,
+                name: products[i].productName,
                 description: products[i].description,
                 images: [`${url}/images/${products[i].image}`]
               });
