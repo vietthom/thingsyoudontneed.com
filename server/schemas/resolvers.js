@@ -70,7 +70,7 @@ const resolvers = {
                 throw new ApolloError('Incorrect password');
             }
         },
-        addOrder: async (_parent, { products }, context) => {
+        addOrder: async (_, { products }, context) => {
             console.log(context);
             if (context.user) {
               const order = new Order({ products });
@@ -105,7 +105,7 @@ const resolvers = {
 
             return await Products.find(params).populate('category');
         },
-        user: async(_parent, _args, context) =>{
+        user: async(_, _, context) =>{
             if(context.user){
                 const user = await User.findById(context.user._id).populate({
                     path: 'orders.products',
@@ -117,7 +117,7 @@ const resolvers = {
                 return user;
             }
         },
-        order: async (_parent, { _id }, context) => {
+        order: async (_, { _id }, context) => {
             if (context.user) {
               const user = await User.findById(context.user._id).populate({
                 path: 'orders.products',
@@ -128,7 +128,7 @@ const resolvers = {
             }
         },
 
-        checkout: async (_parent, args, context) => {
+        checkout: async (_, args, context) => {
             const url = new URL(context.headers.referer).origin;
             const order = new Order({ products: args.products });
             const line_items = [];
