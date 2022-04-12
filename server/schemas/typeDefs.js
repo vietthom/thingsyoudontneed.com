@@ -53,11 +53,17 @@ const typeDefs = gql`
         products: [Products]
         categories: [Category]
         products(category: ID, name: String): [Products]
+        products(_id:ID!): Products
+        user: User
+        order(_id: ID!): Order
+        checkout(products:[ID]!): Checkout
     }
 
     type Mutation {
         createUser(signUpInput: SignUpInput): User
         loginUser(loginInput: LoginInput): User
+        addOrder(products: [ID]!): Order
+        
     }
 
 `;
