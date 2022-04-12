@@ -31,9 +31,8 @@ const typeDefs = gql`
         name: String
     }
 
-    type Category{
-        _id: ID 
-        name: String
+    type Checkout {
+        session: ID
     }
 
     input SignUpInput {
@@ -63,7 +62,7 @@ const typeDefs = gql`
         createUser(signUpInput: SignUpInput): User
         loginUser(loginInput: LoginInput): User
         addOrder(products: [ID]!): Order
-        
+        updateProduct(_id: ID!, quantity: Int!): Products
     }
 
 `;

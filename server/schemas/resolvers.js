@@ -3,8 +3,9 @@ const { ApolloError } = require('apollo-server-errors');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 require('dotenv').config();
-
+const stripe = require('stripe')(stripeKey)
 const secret = process.env.SECRET;
+const stripeKey= process.env.STRIPE_KEY;
 
 const resolvers = {
     Mutation: {
