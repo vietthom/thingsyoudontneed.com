@@ -41,8 +41,8 @@ const resolvers = {
             const res = await newUser.save();
             
             return{
-                id: res.id,
-                ...res.doc
+                id: res._id,
+                token
             }
         },
         async loginUser(_, {loginInput: {email, password}}){
@@ -63,7 +63,7 @@ const resolvers = {
 
                 return{
                     id: user.id,
-                    ...user._doc
+                    token
                 }
             } else{
                 //if user doesn't exist, throw error 
