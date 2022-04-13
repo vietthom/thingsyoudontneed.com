@@ -1,75 +1,75 @@
 const { ApolloError } = require('apollo-server-errors');
 const { User, Products, Category, Order } = require('../models');
 const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
+
 require('dotenv').config();
 const stripe = require('stripe')('sk_test_51KnXr4AMOhfayBffh6ea49sqflPatPIR6ecd67lnMraYa8IvWBLBpoWLb82Nt8SqbiEaluBhzFsk6sVQVC1NXSLT00EcNiJtrv')
-const secret = process.env.SECRET;
-// const stripeKey= process.env.STRIPE_KEY;
+
 
 const resolvers = {
     Mutation: {
-        async createUser(_, {signUpInput: {firstName, lastName, email, password} }) {
-            //check for existing user
-            const existingUser = await User.findOne({email});
+        
+        // async createUser(_, {signUpInput: {firstName, lastName, email, password} }) {
+        //     //check for existing user
+        //     const existingUser = await User.findOne({email});
 
-            //throw error if user exists
-            if(existingUser){
-                throw new ApolloError('This email:' + email + ' is already registered to a user.')
-            }
-            //encrypt password
-            let encryptPassword = await bcrypt.hash(password, 10);
+        //     //throw error if user exists
+        //     if(existingUser){
+        //         throw new ApolloError('This email:' + email + ' is already registered to a user.')
+        //     }
+        //     //encrypt password
+        //     let encryptPassword = await bcrypt.hash(password, 10);
 
-            //build out mongoose model 
-            const newUser = new User({
-                firstName: firstName,
-                lastName: lastName,
-                email: email.toLowerCase(),
-                password: encryptPassword
-            });
-            //create JWT (attach to user model)
-            const token = jwt.sign(
-                {user_id: newUser._id, email},
-                secret, 
-                {
-                    expiresIn: '2h'
-                }
-            );
+        //     //build out mongoose model 
+        //     const newUser = new User({
+        //         firstName: firstName,
+        //         lastName: lastName,
+        //         email: email.toLowerCase(),
+        //         password: encryptPassword
+        //     });
+        //     //create JWT (attach to user model)
+        //     const token = jwt.sign(
+        //         {user_id: newUser._id, email},
+        //         secret, 
+        //         {
+        //             expiresIn: '2h'
+        //         }
+        //     );
 
-            newUser.token = token;
-            //save our user in mongoDB
-            const res = await newUser.save();
+        //     newUser.token = token;
+        //     //save our user in mongoDB
+        //     const res = await newUser.save();
             
-            return{
-                id: res._id,
-                token
-            }
-        },
-        async loginUser(_, {loginInput: {email, password}}){
-            //Check if user exists 
-            const user = await User.findOne({email});
-            //check if the entered password equals the encrypted password
-            if(user && (await bcrypt.compare(password, user.password))){
-                //create new token
-                const token = jwt.sign(
-                    {user_id: user._id, email},
-                    secret, 
-                    {
-                        expiresIn: '2h'
-                    }
-                );
-                //attach token to user model that we found above 
-                user.token = token;
+        //     return{
+        //         id: res._id,
+        //         token
+        //     }
+        // },
+        // async loginUser(_, {loginInput: {email, password}}){
+        //     //Check if user exists 
+        //     const user = await User.findOne({email});
+        //     //check if the entered password equals the encrypted password
+        //     if(user && (await bcrypt.compare(password, user.password))){
+        //         //create new token
+        //         const token = jwt.sign(
+        //             {user_id: user._id, email},
+        //             secret, 
+        //             {
+        //                 expiresIn: '2h'
+        //             }
+        //         );
+        //         //attach token to user model that we found above 
+        //         user.token = token;
 
-                return{
-                    id: user.id,
-                    token
-                }
-            } else{
-                //if user doesn't exist, throw error 
-                throw new ApolloError('Incorrect password');
-            }
-        },
+        //         return{
+        //             id: user.id,
+        //             token
+        //         }
+        //     } else{
+        //         //if user doesn't exist, throw error 
+        //         throw new ApolloError('Incorrect password');
+        //     }
+        // },
         addOrder: async (_, { products }, context) => {
             console.log(context);
             if (context.user) {
