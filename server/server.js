@@ -1,7 +1,7 @@
 const { ApolloServer } = require('apollo-server-express');
 const express = require('express');
 const path = require('path');
-
+const { authMiddleware}= require('./utils/auth');
 const { typeDefs, resolvers }= require('./schemas');
 
 const app = express();
@@ -14,11 +14,12 @@ const mongo = require('./config/connection');
 const server = new ApolloServer({
     typeDefs,
     resolvers,
+    context: authMiddleware,
 });
 
 //frontend middleware
 app.use(express.json());
-app.use(express.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: false }));
 
 app.use('/images', express.static(path.join(__dirname, '../client/images')));
 
