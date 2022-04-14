@@ -17,6 +17,10 @@ const typeDefs = gql`
         products: [Products]
     }
 
+    type Category {
+        name: String
+      }
+
     type Products{
         _id: ID
         productName: String
@@ -32,9 +36,25 @@ const typeDefs = gql`
         name: String
     }
 
+<<<<<<< HEAD
+    type Order {
+        purchaseDate: String
+        products: [Products]
+      }
+
+    type Checkout {
+        session: ID
+      }
+    
+    type Auth {
+        token: ID
+        user: User
+      }
+=======
     type Checkout {
         session: ID
     }
+>>>>>>> 54e5c54089c3b5696317f308423ae7461fd9b04a
 
     input SignUpInput {
         firstName: String!
