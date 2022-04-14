@@ -12,10 +12,10 @@ function Signup(props) {
         event.preventDefault();
         const mutationResponse = await addUser({
             variables: {
-                email: formState.email,
-                password: formState.password,
                 firstName: formState.firstName,
                 lastName: formState.lastName,
+                email: formState.email,
+                password: formState.password,
             },
         });
         const token = mutationResponse.data.addUser.token;
@@ -59,7 +59,7 @@ function Signup(props) {
                 <div className="flex-row space-between my-2">
                     <label htmlFor="email">Email:</label>
                     <input
-                        placeholder="youremail@test.com"
+                        placeholder="email@email.com"
                         name="email"
                         type="email"
                         id="email"
@@ -69,7 +69,7 @@ function Signup(props) {
                 <div className="flex-row space-between my-2">
                     <label htmlFor="pwd">Password:</label>
                     <input
-                        placeholder="******"
+                        placeholder="password"
                         name="password"
                         type="password"
                         id="pwd"

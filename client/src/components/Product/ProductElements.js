@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { Link as LinkS } from 'react-scroll';
+import { Link } from 'react-scroll';
 
 export const ProductContainer = styled.div`
     height: 800px;
@@ -19,12 +19,12 @@ export const ProductContainer = styled.div`
 `;
 
 export const ProductWrapper = styled.div`
-    max-width: 1000px;
+    max-width: 1200px;
     margin: 0 auto;
     display: grid;
     grid-template-columns: 1fr 1fr 1fr 1fr;
     align-items: center;
-    grid-gap: 16px;
+    grid-gap: 24px;
     padding: 0 50px;
 
     @media screen and (max-width: 1000px) {
@@ -44,7 +44,7 @@ export const ProductCard = styled.div`
     justify-content: flex-start;
     align-items: center;
     border-radius: 10px;
-    max-height: 340px;
+    max-height: 420px;
     padding: 30px;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
     transition: all 0.2s ease-in-out;
@@ -57,7 +57,7 @@ export const ProductCard = styled.div`
 `;
 
 export const ProductIcon = styled.img`
-    height: 180px;
+    height: 175px;
     width: 240px;
     margin-bottom: 10px;
 `;
@@ -74,24 +74,31 @@ export const ProductH1 = styled.h1`
 
 export const ProductH2 = styled.h2`
     font-size: 1rem;
-    margin-bottom: 10px;
 `;
 
 export const ProductP = styled.p`
     font-size: 1rem;
-    text-align: center;
 `;
 
-export const ProductLinks = styled(LinkS)`
-    color: #232F3E;
-    display: flex;
-    align-items: center;
-    text-decoration: none;
-    padding: 0 1rem;
-    height: 100%;
+export const Button = styled(Link)`
+    border-radius: 50px;
+    background: ${({ primary }) => (primary ? '#01BF71' : '#010606')
+    };
+    white-space: nowrap;
+    padding: ${({big}) => (big ? '14px 48px' : '12px 30px')};
+    color: ${({dark }) => (dark ? '#010606' : '#fff')};
+    font-size: ${({fontBig}) => (fontBig ? '20px' : '16px')};
+    outline: none;
+    border: none;
     cursor: pointer;
+    display: flex;
+    justify content: center;
+    alogn-items: center;
+    transition: all 0.2s ease-in-out;
 
-    &.active {
-        border-bottom: 3px solid #01bf71;
+    @:hover {
+        transition: all 0.2s ease-in-out;
+        background: ${({ primary }) => (primary ? '#fff' : '#01BF71')
+    };
     }
 `;

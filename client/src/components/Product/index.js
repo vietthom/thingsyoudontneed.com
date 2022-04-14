@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import ProductItem from '../ProductItem';
 import { useStoreContext } from '../../utils/GlobalState';
 import { UPDATE_PRODUCTS } from '../../utils/actions';
 import { useQuery } from '@apollo/client';
@@ -11,7 +12,7 @@ import {
     ProductCard,
     ProductIcon,
     ProductH2,
-    ProductLinks
+    ProductP,
 } from './ProductElements'
 
 const Products = () => {
@@ -39,7 +40,7 @@ console.log(data)
                 });
             });
         }
-    }, [data, loading]);
+    }, [data, loading, dispatch]);
 
     function filterProducts() {
         if (!currentCategory) {
@@ -50,10 +51,7 @@ console.log(data)
             (product) => product.category._id === currentCategory
         );
     }
-
-    function viewDetails() {
-        console.log('viewDetails', this);
-    }
+    
     return (
         <ProductContainer id='products'>
             <ProductH1>Products in stock:</ProductH1>
@@ -61,9 +59,11 @@ console.log(data)
                 {state.products.length ? (
                     filterProducts().map((product) => (
                             <ProductCard>
-                                <ProductIcon src={product.image} />
+                                <ProductIcon src={`/images/${product.image}`} />
                                 <ProductH2>{product.productName}</ProductH2>
-                                <ProductLinks value={product._id} onClick={viewDetails}>View Product Details</ProductLinks>
+                                <ProductP>Price: {product.price}</ProductP>
+                                <ProductP>In Stock: {product.quantity}</ProductP>
+                                <ProductItem />
                             </ProductCard>
                         ))
                 ) : (
@@ -74,4 +74,4 @@ console.log(data)
     )
 }
 
-export default Products
+export default Products;

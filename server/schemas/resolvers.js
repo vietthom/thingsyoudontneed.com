@@ -9,12 +9,12 @@ const secret = process.env.SECRET;
 
 const resolvers = {
     Mutation: {
-        async createUser(_, {signUpInput: {firstName, lastName, email, password} }) {
+        async createUser(_, { signUpInput: { firstName, lastName, email, password } }) {
             //check for existing user
-            const existingUser = await User.findOne({email});
+            const existingUser = await User.findOne({ email });
 
             //throw error if user exists
-            if(existingUser){
+            if (existingUser) {
                 throw new ApolloError('This email:' + email + ' is already registered to a user.')
             }
             //encrypt password
@@ -29,8 +29,8 @@ const resolvers = {
             });
             //create JWT (attach to user model)
             const token = jwt.sign(
-                {user_id: newUser._id, email},
-                secret, 
+                { user_id: newUser._id, email },
+                secret,
                 {
                     expiresIn: '2h'
                 }
@@ -39,21 +39,21 @@ const resolvers = {
             newUser.token = token;
             //save our user in mongoDB
             const res = await newUser.save();
-            
-            return{
+
+            return {
                 id: res.id,
                 ...res.doc
             }
         },
-        async loginUser(_, {loginInput: {email, password}}){
+        async loginUser(_, { loginInput: { email, password } }) {
             //Check if user exists 
-            const user = await User.findOne({email});
+            const user = await User.findOne({ email });
             //check if the entered password equals the encrypted password
-            if(user && (await bcrypt.compare(password, user.password))){
+            if (user && (await bcrypt.compare(password, user.password))) {
                 //create new token
                 const token = jwt.sign(
-                    {user_id: user._id, email},
-                    secret, 
+                    { user_id: user._id, email },
+                    secret,
                     {
                         expiresIn: '2h'
                     }
@@ -61,11 +61,11 @@ const resolvers = {
                 //attach token to user model that we found above 
                 user.token = token;
 
-                return{
+                return {
                     id: user.id,
                     ...user._doc
                 }
-            } else{
+            } else {
                 //if user doesn't exist, throw error 
                 throw new ApolloError('Incorrect password');
             }
@@ -73,28 +73,28 @@ const resolvers = {
         addOrder: async (_, { products }, context) => {
             console.log(context);
             if (context.user) {
-              const order = new Order({ products });
-      
-              await User.findByIdAndUpdate(context.user._id, { $push: { orders: order } });
-      
-              return order;
+                const order = new Order({ products });
+
+                await User.findByIdAndUpdate(context.user._id, { $push: { orders: order } });
+
+                return order;
             }
-      
+
             throw new AuthenticationError('Not logged in');
-          },
+        },
     },
-    Query:{
-        categories: async ()=>{
+    Query: {
+        categories: async () => {
             return await Category.find();
-        }, 
-        products: async (_, { category, productName }) =>{
+        },
+        products: async (_, { category, productName }) => {
             const params = {};
 
-            if (category){
+            if (category) {
                 params.category = category;
             }
 
-            if(productName){
+            if (productName) {
                 params.productName = {
                     $regex: productName
                 };
@@ -102,26 +102,26 @@ const resolvers = {
 
             return await Products.find(params).populate('category');
         },
-        user: async(_, _parent, context) =>{
-            if(context.user){
+        user: async (_, _parent, context) => {
+            if (context.user) {
                 const user = await User.findById(context.user._id).populate({
                     path: 'orders.products',
                     populate: 'category'
                 });
 
-                user.orders.sort((a,b)=> b.purchaseDate - a.purchaseDate);
+                user.orders.sort((a, b) => b.purchaseDate - a.purchaseDate);
 
                 return user;
             }
         },
         order: async (_, { _id }, context) => {
             if (context.user) {
-              const user = await User.findById(context.user._id).populate({
-                path: 'orders.products',
-                populate: 'category'
-              });
-      
-              return user.orders.id(_id);
+                const user = await User.findById(context.user._id).populate({
+                    path: 'orders.products',
+                    populate: 'category'
+                });
+
+                return user.orders.id(_id);
             }
         },
 
@@ -129,38 +129,38 @@ const resolvers = {
             const url = new URL(context.headers.referer).origin;
             const order = new Order({ products: args.products });
             const line_items = [];
-      
+
             const { products } = await order.populate('products');
-      
+
             for (let i = 0; i < products.length; i++) {
-              const product = await stripe.products.create({
-                name: products[i].productName,
-                description: products[i].description,
-                images: [`${url}/images/${products[i].image}`]
-              });
-      
-              const price = await stripe.prices.create({
-                product: product.id,
-                unit_amount: products[i].price * 100,
-                currency: 'usd',
-              });
-      
-              line_items.push({
-                price: price.id,
-                quantity: 1
-              });
+                const product = await stripe.products.create({
+                    name: products[i].productName,
+                    description: products[i].description,
+                    images: [`${url}/images/${products[i].image}`]
+                });
+
+                const price = await stripe.prices.create({
+                    product: product.id,
+                    unit_amount: products[i].price * 100,
+                    currency: 'usd',
+                });
+
+                line_items.push({
+                    price: price.id,
+                    quantity: 1
+                });
             }
-      
+
             const session = await stripe.checkout.sessions.create({
-              payment_method_types: ['card'],
-              line_items,
-              mode: 'payment',
-              success_url: `${url}/success?session_id={CHECKOUT_SESSION_ID}`,
-              cancel_url: `${url}/`
+                payment_method_types: ['card'],
+                line_items,
+                mode: 'payment',
+                success_url: `${url}/success?session_id={CHECKOUT_SESSION_ID}`,
+                cancel_url: `${url}/`
             });
-      
+
             return { session: session.id };
-          }
+        }
     }
 };
 
