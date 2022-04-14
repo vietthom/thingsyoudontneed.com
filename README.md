@@ -20,6 +20,9 @@ As full stack devlopers, we wanted to create a website where the user can buy fr
 - More products
 - Peronalized user profiles
 
+## Deployment link
+- https://thingsyoudontneed.herokuapp.com/
+
 ### Authors
 Thom Le
 - https://github.com/vietthom
