@@ -13,9 +13,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@material-ui/icons": "^4.11.3",
     "concurrently": "^7.1.0"
   },
-  "devDependencies": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/vietthom/thingsyoudontneed.com.git"
