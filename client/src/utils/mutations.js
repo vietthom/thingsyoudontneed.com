@@ -1,69 +1,51 @@
 import { gql } from '@apollo/client';
 
-export const CREATE_USER = gql`
-mutation createUser($signUpInput: SignUpInput) {
-  createUser(signUpInput: $signUpInput) {
-    _id
-    token
-  }
-}
-`;
-
 export const LOGIN = gql`
-mutation login($loginInput: LoginInput) {
-  loginUser(loginInput: $loginInput) {
-    email
-    password
+  mutation login($email: String!, $password: String!) {
+    login(email: $email, password: $password) {
+      token
+      user {
+        _id
+      }
+    }
   }
-}
 `;
-
-// export const LOGIN = gql`
-// mutation login($email: String!, $password: String!) {
-//     login(email: $email, password: $password) {
-//     token
-//     user {
-//         _id
-//     }
-//     }
-// }
-// `;
 
 export const ADD_ORDER = gql`
-mutation addOrder($products: [ID]!) {
+  mutation addOrder($products: [ID]!) {
     addOrder(products: $products) {
-    purchaseDate
-    products {
+      purchaseDate
+      products {
         _id
         name
         description
         price
         quantity
         category {
-        name
+          name
         }
+      }
     }
-    }
-}
+  }
 `;
 
-// export const ADD_USER = gql`
-// mutation addUser(
-//     $firstName: String!
-//     $lastName: String!
-//     $email: String!
-//     $password: String!
-// ) {
-//     addUser(
-//         firstName: $firstName
-//         lastName: $lastName
-//         email: $email
-//         password: $password
-//     ) {
-//         token
-//         user {
-//         _id
-//     }
-//     }
-// }
-
+export const ADD_USER = gql`
+  mutation addUser(
+    $firstName: String!
+    $lastName: String!
+    $email: String!
+    $password: String!
+  ) {
+    addUser(
+      firstName: $firstName
+      lastName: $lastName
+      email: $email
+      password: $password
+    ) {
+      token
+      user {
+        _id
+      }
+    }
+  }
+`;
