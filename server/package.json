@@ -5,6 +5,7 @@
   "main": "server.js",
   "scripts": {
     "start": "nodemon server.js",
+    "server": "nodemon index.js --ignore client",
     "seed": "node seeders/seeds.js"
   },
   "keywords": [],
