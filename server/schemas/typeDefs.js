@@ -67,20 +67,6 @@ const typeDefs = gql`
         password: String
     }
 
-<<<<<<< HEAD
-    type Query {
-        user(id: ID!): User
-    }
-
-    type Query {
-        categories: [Category]
-        products(name: String): [Products]
-
-        user: User
-        order : Order
-        checkout(products: [ID]!): Checkout
-      }
-=======
     type Query{
         categories: [Category]
         products(category: ID, name: String): [Products]
@@ -89,7 +75,6 @@ const typeDefs = gql`
         order(_id: ID!): Order
         checkout(products:[ID]!): Checkout
     }
->>>>>>> 54e5c54089c3b5696317f308423ae7461fd9b04a
 
     type Mutation {
         createUser(signUpInput: SignUpInput): User
