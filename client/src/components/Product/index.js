@@ -59,7 +59,7 @@ console.log(data)
                 {state.products.length ? (
                     filterProducts().map((product) => (
                             <ProductCard>
-                                <ProductIcon src={`/images/${product.image}`} />
+                                <ProductIcon src={product.image} />
                                 <ProductH2>{product.productName}</ProductH2>
                                 <ProductP>Price: {product.price}</ProductP>
                                 <ProductP>In Stock: {product.quantity}</ProductP>
