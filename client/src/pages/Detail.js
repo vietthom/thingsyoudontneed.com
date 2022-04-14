@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { useQuery } from '@apollo/client';
-
+import { Button } from '../components/Product/ProductElements';
 import Cart from '../components/Cart';
 import { useStoreContext } from '../utils/GlobalState';
 import {
@@ -87,7 +87,7 @@ function Detail() {
                 <div className="container my-1">
                     <Link to="/">← Back to Products</Link>
 
-                    <h2>{currentProduct.name}</h2>
+                    <h2>{currentProduct.productName}</h2>
 
                     <p>{currentProduct.description}</p>
 
@@ -104,7 +104,7 @@ function Detail() {
 
                     <img
                         src={`/images/${currentProduct.image}`}
-                        alt={currentProduct.name}
+                        alt={currentProduct.productName}
                     />
                 </div>
             ) : null}

@@ -14,9 +14,12 @@
     "jwt-decode": "^2.2.0",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
+    "react-icons": "^4.3.1",
+    "react-responsive-modal": "^6.2.0",
     "react-router-dom": "^6.2.1",
     "react-scripts": "4.0.2",
     "react-scroll": "^1.8.6",
+    "react-spring": "^9.0.0-rc.3",
     "styled-components": "^5.3.5"
   },
   "scripts": {
